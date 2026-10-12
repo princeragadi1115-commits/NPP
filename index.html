@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Smart Patient Routing and Queue Management System</title><link rel="stylesheet" href="style.css">
+</head><body><div class="app">
+<header><div><div class="eyebrow">OS PROCESS SCHEDULING</div><h1>Smart Patient Routing and Queue Management System</h1><p>Non-Preemptive Priority Scheduling</p></div><div class="algorithm">NPP</div></header>
+
+<section class="stats">
+<div><span>Simulation Time</span><strong id="clock">0</strong></div>
+<div><span>CPU Utilization</span><strong id="cpuUtil">0.00%</strong></div>
+<div><span>Throughput</span><strong id="throughput">0.00</strong><small>patients / time unit</small></div>
+<div><span>Completed</span><strong id="completedCount">0</strong></div>
+</section>
+
+<section class="card"><div class="section-head"><h2>Patient Registration</h2><span>Priority: 1 Emergency • 2 Urgent • 3 Routine • 4 Normal</span></div>
+<div class="form-grid">
+<label>Patient Name<input id="patientName" placeholder="Patient name"></label>
+<label>Arrival Time<input id="arrivalTime" type="number" min="0" value="0"></label>
+<label>Burst Time<input id="burstTime" type="number" min="1" value="3"></label>
+<label>Priority<select id="priority"><option value="1">1 — Emergency</option><option value="2">2 — Urgent</option><option value="3">3 — Routine</option><option value="4">4 — Normal</option></select></label>
+</div><div class="priority-legend">
+  <strong>Priority Order</strong>
+  <span>1 — Emergency</span>
+  <span>2 — Urgent</span>
+  <span>3 — Routine</span>
+  <span>4 — Normal</span>
+</div><div class="actions"><button class="primary" id="addBtn">Register Patient</button><button id="demoBtn">Load Demo</button><button id="resetBtn">Reset</button></div><div id="message"></div></section>
+
+<section class="main-grid">
+<div class="card"><div class="section-head"><h2>Ready Queue</h2><span id="queueCount">0 waiting</span></div><div id="waitingQueue" class="queue"></div></div>
+<div class="card cpu-card"><div class="section-head"><h2>CPU / Doctor</h2><span id="cpuStatus">Idle</span></div><div id="currentPatient" class="current">No patient</div><div class="progress-track"><div id="progressBar"></div></div><div id="progressText" class="progress-text">Ready</div></div>
+</section>
+
+<section class="card"><div class="section-head"><h2>Gantt Chart</h2><span>Execution timeline</span></div><div id="gantt" class="gantt-empty">Run the simulation to generate the Gantt chart.</div></section>
+
+<section class="card"><div class="section-head"><h2>Scheduling Results</h2><span>Waiting and turnaround metrics</span></div>
+<div class="table-wrap"><table><thead><tr><th>Patient</th><th>Arrival</th><th>Burst</th><th>Priority</th><th>Start</th><th>Completion</th><th>Waiting</th><th>Turnaround</th></tr></thead><tbody id="resultsTable"></tbody></table></div>
+<div class="averages"><div><span>Average Waiting Time</span><strong id="avgWaiting">0.00</strong></div><div><span>Average Turnaround Time</span><strong id="avgTurnaround">0.00</strong></div></div></section>
+
+<section class="card controls"><button class="primary large" id="startBtn">Start Simulation</button> <button id="pauseBtn" disabled>Pause</button>
+<p><strong>NPP rule:</strong> the current patient is never interrupted. When the CPU becomes available, the highest-priority patient already in the ready queue is selected. Equal priorities use FCFS.</p></section>
+</div><script src="script.js"></script></body></html>
